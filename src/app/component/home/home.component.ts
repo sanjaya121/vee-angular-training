@@ -10,13 +10,15 @@ export class HomeComponent implements OnInit {
   arr = [1, 2, 3, 4, 56, 77];
   array = ["Mike", "Matt", "Nancy", "Adam", "Jenny", "Nancy", "Carl"];
   height = [1, 8, 6, 2, 5, 4, 8, 3, 7];
+  matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
   // height = [1, 2]
   constructor() { }
 
   ngOnInit(): void {
     // this.findMissingNUmber(this.arr);
     // this.uniqueArray(this.array);
-    this.maxArea(this.height);
+    // this.maxArea(this.height);
+    this.rotateImage(this.matrix)
   }
   //finding Missing Number
   // findMissingNUmber = (arr) => {
@@ -56,26 +58,52 @@ export class HomeComponent implements OnInit {
   
   */
 
-  maxArea = (height) => {
-    let area = 0;
-    for (let i = 0; i < height.length; i++) {
-      for (let j = 0; j < height.length; j++) {
-        area = Math.max(area, (j - i) * Math.min(height[i], height[j]))
+  // maxArea = (height) => {
+  //   let area = 0;
+  //   for (let i = 0; i < height.length; i++) {
+  //     for (let j = 0; j < height.length; j++) {
+  //       area = Math.max(area, (j - i) * Math.min(height[i], height[j]))
+  //     }
+  //   }
+  //   console.log(area);
+  //   console.log(Math.min(4, 5))
+  // }
+
+  // Rotate Image
+
+
+
+  /**
+   * @param {number[][]} matrix
+   * @return {void} Do not return anything, modify matrix in-place instead.
+   */
+  rotateImage = function (matrix) {
+    var n = matrix.length;
+    var n2 = Math.floor(n / 2);
+    // 1 2 3     7 8 9
+    // 4 5 6  => 4 5 6
+    // 7 8 9     1 2 3
+    for (var i = 0; i < n2; i++) {
+      for (var j = 0; j < n; j++) {
+        this.swap(matrix, i, j, n - 1 - i, j);
       }
     }
-    //  i = 0, j = height.length - 1;
-    // while (i < j) {
-    //   const temp = (j - 1) * Math.min(height[i], height[j]);
-    //   area = Math.max(area, temp);
-    //   if (height[i] > height[j]) {
-    //     j -= 1;
-    //   }
-    //   else {
-    //     i += 1;
-    //   }
-    // }
+    // 7 8 9     7 4 1
+    // 4 5 6  => 8 5 2
+    // 1 2 3     9 6 3
+    for (var i = 0; i < n; i++) {
+      for (var j = i + 1; j < n; j++) {
+        this.swap(matrix, i, j, j, i);
+      }
+    }
+    console.log(matrix);
+  };
 
-    console.log(area);
-    console.log(Math.min(4, 5))
+  swap = function (matrix, x1, y1, x2, y2) {
+    var tmp = matrix[x1][y1];
+    matrix[x1][y1] = matrix[x2][y2];
+    matrix[x2][y2] = tmp
   }
+
+
 }
