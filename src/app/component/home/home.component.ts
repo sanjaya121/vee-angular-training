@@ -15,10 +15,19 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.Myfunction(4, 6);
+    this.convertKiloToMiles(10);
+    this.sumOfArray(this.height);
+    this.reverseArray(this.height);
+    this.deleteArray(this.height);
+    this.reverseString("Hello");
     // this.findMissingNUmber(this.arr);
     // this.uniqueArray(this.array);
     // this.maxArea(this.height);
-    this.rotateImage(this.matrix)
+    // this.rotateImage(this.matrix);
+
+    // var int = null;
+    // console.log(typeof int)
   }
   //finding Missing Number
   // findMissingNUmber = (arr) => {
@@ -105,5 +114,39 @@ export class HomeComponent implements OnInit {
     matrix[x2][y2] = tmp
   }
 
+  //
+  Myfunction(a, b) {
+    console.log(a + b)
 
+  }
+  // Create a length converter function
+  convertKiloToMiles(c) {
+    console.log("convert kilometer to miles", c * 0.62137);
+  }
+  // Calculate the sum of numbers within an array
+  sumOfArray(array) {
+    console.log("The sum of array", array.length);
+    var sum = 0;
+    for (var i = 0; i < array.length; i++) {
+      console.log("Array", array[i]);
+      sum += array[i];
+    }
+    console.log("the sum of array is:", sum);
+  }
+  // Create a function that reverses an array
+
+  reverseArray(array) {
+
+    var reverse = array.reverse();
+    console.log("Reverse Array", reverse);
+  }
+  // Delete Element in Array
+
+  deleteArray(array) {
+    console.log("The Deletion of Array", array.pop());
+  }
+
+  reverseString(string) {
+    console.log("string", string.split("").reverse().join(""));
+  }
 }
